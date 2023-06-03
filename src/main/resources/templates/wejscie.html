@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <title>Dodaj pracownika</title>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <a class="navbar-brand px-3" href="#">Strona Menedżera Pracowników</a>
+
+  <div class="navbar" id="navbarNav">
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item"><a class="nav-link" href="/">Lista pracowników</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/wejscie">Dodaj pracownika</a></li>
+
+    </ul>
+  </div>
+
+</nav>
+
+<div class="p-3 d-flex justify-content-center">
+
+  <form th:action="@{/pracownik/zapisz}" th:object="${Pracownik}" method="post">
+    <label for="imie">Imie:</label><br>
+    <input type="text" th:field="*{imie}" id="imie" name="imie" required />
+    <br />
+
+    <label for="nazwisko">Nazwisko:</label> <br>
+    <input type="text" th:field="*{nazwisko}" id="nazwisko" name="nazwisko" required />
+    <br />
+
+    <label for="pozycja">Pozycja:</label><br>
+    <input type="text" th:field="*{pozycja}" id="pozycja" name="pozycja" required />
+    <br />
+
+    <label for="pensja">Pensja:</label><br>
+    <input type="number" max="100000" th:field="*{pensja}" id="pensja" name="pensja" required />
+    <br />
+
+    <br>
+    <input type="submit" class="btn btn-primary" value="Wyślij" />
+  </form>
+
+</div>
+
+</body>
+
+</html>

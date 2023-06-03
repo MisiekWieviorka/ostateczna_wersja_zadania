@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edytuj pracownika</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <span class="navbar-brand px-3">Strona Menedżera Pracowników</span>
+
+  <div class="navbar" id="navbarNav">
+
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="/" class="nav-link active">Lista pracowników</a></li>
+      <li class="nav-item"><a href="/wejscie" class="nav-link">Dodaj pracownika</a></li>
+    </ul>
+
+  </div>
+
+</nav>
+
+<div class="p-3">
+  <h1>Edytuj pracownika</h1>
+
+  <form  th:action="@{'/zaktualizuj/'+${pracownik.idPracownika}}" method="post">
+    <input type="hidden" th:field="${pracownik.idPracownika}"/>
+    <label for="pozycja">Pozycja:</label><br>
+    <input type="text" id="pozycja" th:field="${pracownik.pozycja}" required/><br>
+    <label for="pensja">Pensja:</label><br>
+    <input type="number" id="pensja" th:field="${pracownik.pensja}" required/><br>
+    <br>
+    <button class="btn btn-primary" type="submit">Zapisz</button>
+  </form>
+
+</div>
+
+</body>
+
+</html>

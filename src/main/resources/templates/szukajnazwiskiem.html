@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Szukaj nazwiskiem</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <span class="navbar-brand px-3">Strona Menedżera </span>
+
+  <div class="navbar" id="navbarNav">
+
+    <ul class="navbar-nav">
+
+      <li><a href="/" class="nav-link active">Lista pracowników</a></li>
+      <li class="nav-item"><a class="nav-link" href="/wejscie">Dodaj pracownika</a></li>
+    </ul>
+
+  </div>
+
+</nav>
+
+<div class="container p-3">
+
+  <p th:text="'Szukasz po nazwisku: ' + ${nazwisko}"></p>
+
+  <table class="table table-striped">
+
+    <thead>
+
+    <tr>
+      <th>#</th>
+      <th>Imie</th>
+      <th>Nazwisko</th>
+      <th>Pozycja</th>
+      <th>Pensja</th>
+      <th>Edytuj</th>
+      <th>Usuń</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr th:each="entry, stat : ${menadzerPracownikow.szukajPracownikaPrzezNazwisko(nazwisko)}">
+      <td th:text="${stat.index +1}"></td>
+      <td th:text="${entry.imie}"></td>
+      <td th:text="${entry.nazwisko}"></td>
+      <td th:text="${entry.pozycja}"></td>
+      <td th:text="${entry.pensja}"></td>
+      <td><a th:href="@{/edytuj/{id}(id=${entry.idUzytkownika})}">Edytuj</a></td>
+      <td>
+        <form th:action="@{/usun/{id}(id=${entry.idUzytkownika})}" method="post" onsubmit="return confirm('Czy na pewno?')">
+          <button type="submit">Usuń</button>
+        </form>
+      </td>
+
+    </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+</body>
+
+</html>
